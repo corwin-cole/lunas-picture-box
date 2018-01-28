@@ -137,9 +137,9 @@ PHONENUMBER_DEFAULT_REGION = 'US'
 # Static files
 STATIC_URL = 'https://{}/'.format(STATIC_AWS_S3_CUSTOM_DOMAIN)
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATICFILES_STORAGE = 'lunas_picture_box.custom_storages.StaticStorage'
+STATICFILES_STORAGE = 'lpb.custom_storages.StaticStorage'
 MEDIA_URL = 'https://{}/'.format(MEDIA_AWS_S3_CUSTOM_DOMAIN)
-DEFAULT_FILE_STORAGE = 'lunas_picture_box.custom_storages.MediaStorage'
+DEFAULT_FILE_STORAGE = 'lpb.custom_storages.MediaStorage'
 
 # Email
 SERVER_EMAIL = 'corwin@lunaspicturebox.com'
