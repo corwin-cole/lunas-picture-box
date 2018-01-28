@@ -316,6 +316,7 @@ class Skill(MainSiteContentChildAbstractBase):
         help_text='Percent progress of skill (1-100)',
         null=True
     )
+    description = models.CharField(max_length=100)
 
 
 class Partner(MainSiteContentChildAbstractBase):
