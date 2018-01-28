@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
-    'elasticbeanstalk-us-west-1-847240153276.s3-us-west-1.amazonaws.com',
+    'lpb-env.us-west-1.elasticbeanstalk.com',
     '172.31.164.134',
 ]
 
