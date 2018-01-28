@@ -267,15 +267,16 @@ class MainSiteContent(models.Model):
         blank=True
     )
     contact_footnote = models.CharField(
+        max_length=200,
         help_text='Displays with an asterisk (*) below the contact form',
         verbose_name='Footnote',
         blank=True
     )
 
 
-class Service(models.Model):
+class MainSiteContentChildAbstractBase(models.Model):
     """
-    A service rendered in the "Services" section carousel
+    Abstract base class for defining child objects of MainSiteContent
     """
 
     id = models.UUIDField(
@@ -283,21 +284,27 @@ class Service(models.Model):
         default=uuid.uuid4,
         editable=False
     )
+    main_site_content = models.ForeignKey(to=MainSiteContent, on_delete=models.CASCADE)
+
+    class Meta:
+        abstract = True
+
+
+class Service(MainSiteContentChildAbstractBase):
+    """
+    A service rendered in the "Services" section carousel
+    """
+
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=300)
     icon = IconField()
 
 
-class Skill(models.Model):
+class Skill(MainSiteContentChildAbstractBase):
     """
     A skill rendered in the "About" and "Services" sections
     """
 
-    id = models.UUIDField(
-        primary_key=True,
-        default=uuid.uuid4,
-        editable=False
-    )
     name = models.CharField(
         max_length=50,
         null=True
@@ -311,16 +318,11 @@ class Skill(models.Model):
     )
 
 
-class Partner(models.Model):
+class Partner(MainSiteContentChildAbstractBase):
     """
     A partner rendered in the "Services" section
     """
 
-    id = models.UUIDField(
-        primary_key=True,
-        default=uuid.uuid4,
-        editable=False
-    )
     name = models.CharField(
         max_length=100,
         null=True
