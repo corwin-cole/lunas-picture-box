@@ -42,13 +42,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'storages',
     'taggit',
     'taggit_templatetags2',
     'fontawesome',
     'django_countries',
     'phonenumber_field',
+    'main_site_content.apps.MainSiteContentConfig',
     'photos.apps.PhotosConfig',
 ]
+
+AWS_S3_REGION_NAME = 'us-west-1'
+STATIC_AWS_STORAGE_BUCKET_NAME = os.environ.get('STATIC_AWS_STORAGE_BUCKET_NAME')
+STATIC_AWS_S3_CUSTOM_DOMAIN = '{}.s3.amazonaws.com'.format(STATIC_AWS_STORAGE_BUCKET_NAME)
+MEDIA_AWS_STORAGE_BUCKET_NAME = os.environ.get('MEDIA_AWS_STORAGE_BUCKET_NAME')
+MEDIA_AWS_S3_CUSTOM_DOMAIN = '{}.s3.amazonaws.com'.format(MEDIA_AWS_STORAGE_BUCKET_NAME)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -120,21 +128,32 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.0/howto/static-files/
-
-STATIC_URL = '/static/'
 
 # Phone number field
 PHONENUMBER_DB_FORMAT = 'NATIONAL'
 PHONENUMBER_DEFAULT_REGION = 'US'
+
+# Static files
+STATIC_URL = 'https://{}/'.format(STATIC_AWS_S3_CUSTOM_DOMAIN)
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_STORAGE = 'lunas_picture_box.custom_storages.StaticStorage'
+MEDIA_URL = 'https://{}/'.format(MEDIA_AWS_S3_CUSTOM_DOMAIN)
+DEFAULT_FILE_STORAGE = 'lunas_picture_box.custom_storages.MediaStorage'
+
+# Email
+SERVER_EMAIL = 'corwin@lunaspicturebox.com'
+ADMINS = (
+    ('Dana Cassity', 'dana@lunaspicturebox.com'),
+    ('Corwin Cole', 'corwin@lunaspicturebox.com'),
+)
+CONTACT_US_RECIPIENT_EMAIL = 'corwin@lunaspicturebox.com'
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
