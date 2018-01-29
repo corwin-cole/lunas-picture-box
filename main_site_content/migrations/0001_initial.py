@@ -93,7 +93,6 @@ class Migration(migrations.Migration):
                 ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
                 ('name', models.CharField(max_length=50, null=True)),
                 ('progress', models.PositiveIntegerField(help_text='Percent progress of skill (1-100)', null=True, validators=[django.core.validators.MaxValueValidator(limit_value=100)])),
-                ('description', models.CharField(max_length=100)),
                 ('main_site_content', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='main_site_content.MainSiteContent')),
             ],
             options={
