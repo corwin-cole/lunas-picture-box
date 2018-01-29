@@ -41,6 +41,14 @@ class MainSiteContent(models.Model):
         help_text='Add a logo. This image is displayed at the top of the navigation',
         null=True
     )
+    favicon = models.ImageField(
+        help_text='Add a favicon. Should be a common filetype and 16x16 px',
+        null=True
+    )
+    apple_touch_icon = models.ImageField(
+        help_text='Add an icon for Apple Touch. Should be a common filetype and 144x144 px',
+        null=True
+    )
 
     # Social links
     facebook_url = models.URLField(
