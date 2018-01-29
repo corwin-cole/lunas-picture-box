@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.views.generic import View
+from main_site_content.views import MainSiteView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('healthcheck', View.as_view())
+    path('healthcheck', View.as_view()),
+    path('/', MainSiteView.as_view()),
 ]
