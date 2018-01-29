@@ -21,6 +21,10 @@ class MainSiteContent(models.Model):
         default=uuid.uuid4,
         editable=False
     )
+    is_live = models.BooleanField(
+        help_text='Checking this will make this Main Site Content live and all others will be unchecked',
+        default=False
+    )
 
     # Global content
     name = models.CharField(
