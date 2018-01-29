@@ -17,8 +17,8 @@
     <meta name="robots" content="index, follow">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'ico/apple-touch-icon-144-precomposed.png' %}">
-    <link rel="shortcut icon" href="{% static 'ico/favicon.ico' %}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ object.apple_touch_icon.url }}">
+    <link rel="shortcut icon" href="{{ object.favicon.url }}">
 
     <!--[if lt IE 9]>
         <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -51,53 +51,14 @@
 <body>
 	<div id="page-loader">
         <div class="loader-square loader-square-1">
-        	<div class="loader-square-content">
-            	<div class="loader-square-inner bg-pattern dark-screen"></div>
+        	<div class="loader-square-content" style="background-image: url({{ object.home_background_image.url }})">
+            	<div class="loader-square-inner dark-screen"></div>
             </div>
         </div>
-        <div class="loader-square loader-square-2">
-        	<div class="loader-square-content">
-            	<div class="loader-square-inner bg-pattern dark-screen"></div>
-            </div>
-        </div>
-        <div class="loader-square loader-square-3">
-        	<div class="loader-square-content">
-            	<div class="loader-square-inner bg-pattern dark-screen"></div>
-            </div>
-        </div>
-        <div class="loader-square loader-square-4">
-        	<div class="loader-square-content">
-            	<div class="loader-square-inner bg-pattern dark-screen"></div>
-            </div>
-        </div>
-        <div class="loader-square loader-square-5">
-        	<div class="loader-square-content">
-            	<div class="loader-square-inner bg-pattern dark-screen"></div>
-            </div>
-        </div>
-        <div class="loader-square loader-square-6">
-        	<div class="loader-square-content">
-            	<div class="loader-square-inner bg-pattern dark-screen"></div>
-            </div>
-        </div>
-        <div class="loader-square loader-square-7">
-        	<div class="loader-square-content">
-            	<div class="loader-square-inner bg-pattern dark-screen"></div>
-            </div>
-        </div>
-        <div class="loader-square loader-square-8">
-        	<div class="loader-square-content">
-            	<div class="loader-square-inner bg-pattern dark-screen"></div>
-            </div>
-        </div>
-        <div class="loader-square loader-square-9">
-        	<div class="loader-square-content">
-            	<div class="loader-square-inner bg-pattern dark-screen"></div>
-            </div>
-        </div>
+
         <div class="loader-container">
         	<div class="loader-content">
-            	<img class="loader-logo" alt="Phoenix-area professional photography" src="{% static 'images/logo.jpg' %}">
+            	<img class="loader-logo" alt="Phoenix-area professional photography" src="{{ object.logo.url }}">
             </div>
         </div><!-- .loader-container -->
         <div class="loader-footer">
@@ -113,7 +74,7 @@
         	<div class="menu-container">
             	<div class="menu-inner">
                     <div class="logo-container">
-                        <img alt="Phoenix-area professional photography" src="{% static 'images/logo.jpg' %}">
+                        <img alt="Phoenix-area professional photography" src="{{ object.logo.url }}">
                     </div>
                     <nav class="main-navigation">
                         <ul id="one-page-nav">
@@ -163,8 +124,8 @@
         	<i class="fa fa-reorder"></i>
         </div>
 
-        <section id="section-intro">
-            <div class="section-content bg-pattern dark-screen">
+        <section id="section-intro" style="background-image: url({{ object.home_background_image.url }})">
+            <div class="section-content dark-screen">
                 <div class="container">
                     <h1 class="heading-enormous no-margin">{{ object.home_header_1 }}</h1>
                     <h2 class="heading-huge no-margin">{{ object.home_header_2 }}</h2>
@@ -178,8 +139,8 @@
             </div><!-- .section-content -->
         </section><!-- #section-intro -->
 
-        <section id="section-about">
-            <div class="section-content bg-pattern dark-screen">
+        <section id="section-about" style="background-image: url({{ object.about_background_image.url }})">
+            <div class="section-content dark-screen">
                 <div class="container">
                 	<div class="row">
                     	<div class="col-md-7 content-column">
@@ -218,8 +179,8 @@
             </div><!-- .section-content -->
         </section><!-- #section-about -->
 
-        <section id="section-services">
-            <div class="section-content bg-pattern dark-screen">
+        <section id="section-services" style="background-image: url({{ object.services_background_image.url }})">
+            <div class="section-content dark-screen">
             	<div class="container">
                     <div class="tab-content">
                         <!-- Tab panes -->
@@ -294,8 +255,8 @@
             </div><!-- .section-content -->
      	</section><!-- #section-services -->
 
-        <section id="section-portfolio">
-            <div class="section-content bg-pattern dark-screen">
+        <section id="section-portfolio" style="background-image: url({{ object.portfolio_background_image.url }})">
+            <div class="section-content dark-screen">
                 <div class="container">
                 	<div class="margin-40"></div>
                 	<div class="clearfix">
@@ -393,8 +354,8 @@
           	</div><!-- .section-content -->
       	</section><!-- #section-portfolio -->
 
-        <section id="section-blog">
-            <div class="section-content bg-pattern dark-screen">
+        <section id="section-blog" style="background-image: url({{ object.blog_background_image.url }})">
+            <div class="section-content dark-screen">
                 <div class="container">
                 	<h1 class="onscroll-animate" data-animation="fadeInRight">Blog</h1>
                     <div class="onscroll-animate" data-animation="fadeInUp">
@@ -532,8 +493,8 @@
           	</div><!-- .section-content -->
       	</section><!-- #section-blog -->
 
-        <section id="section-contact">
-            <div class="section-content bg-pattern dark-screen">
+        <section id="section-contact" style="background-image: url({{ object.contact_background_image.url }})">
+            <div class="section-content dark-screen">
                 <div class="container">
                 	<h1 class="onscroll-animate" data-animation="fadeInRight">Contact</h1>
                     <div class="margin-10"></div>
