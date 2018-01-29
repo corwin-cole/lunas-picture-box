@@ -50,11 +50,13 @@
 {% with object.partner_set.all as partners %}
 <body>
 	<div id="page-loader">
-        <div class="loader-square loader-square-1">
-        	<div class="loader-square-content" style="background-image: url({{ object.home_background_image.url }})">
+    {% for i in '123456789' %}
+        <div class="loader-square loader-square-{{ i }}">
+        	<div class="loader-square-content">
             	<div class="loader-square-inner dark-screen"></div>
             </div>
         </div>
+    {% endfor %}
 
         <div class="loader-container">
         	<div class="loader-content">
@@ -263,92 +265,28 @@
                 		<h1 class="no-top-margin pull-left onscroll-animate" data-animation="fadeInRight">Portfolio</h1>
                         <ul id="isotope-filter-list1" class="pull-right filter-list">
                             <li><a class="active isotope-filter" data-filter="*" href="#">All</a></li>
-                            <li><a class="isotope-filter" data-filter=".filter-portrait" href="#">Portrait</a></li>
-                            <li><a class="isotope-filter" data-filter=".filter-fashion" href="#">Fashion</a></li>
-                            <li><a class="isotope-filter" data-filter=".filter-lifestyle" href="#">Lifestyle</a></li>
-                            <li><a class="isotope-filter" data-filter=".filter-other" href="#">Other</a></li>
+                        {% for category, count in categories.items %}
+                            <li><a class="isotope-filter" data-filter=".filter-{{ category|lower }}" href="#">{{ category|capfirst }}</a></li>
+                        {% endfor %}
                         </ul>
                     </div>
 
                     <div id="portfolio1" class="portfolio-layout1 onscroll-animate">
+                    {% for photo in photos %}
                         <article class="portfolio-item filter-lifestyle">
-                        	<div class="popup-window-trigger" data-popup="#popup-portfolio-1">
-                                <img class="onscroll-animate" alt="img1" src="images/portfolio/onepage_1.jpg" data-animation="fadeInUp">
+                        	<div class="popup-window-trigger" data-popup="#popup-portfolio-{{ photo.pk }}">
+                                <img class="onscroll-animate" alt="{{ photo.heading }}" src="{{ photo.image.url }}" data-animation="fadeInUp">
                                 <div class="portfolio-detail">
                                     <div class="portfolio-detail-container">
                                         <div class="portfolio-detail-content">
-                                            <h2>Photo title here</h2>
-                                            Lifestyle, Other
+                                            <h2>{{ photo.title }}</h2>
+                                            {{ photo.category }}
                                         </div>
                                     </div>
                                 </div>
                         	</div>
                         </article>
-                    	<article class="portfolio-item filter-fashion filter-lifestyle filter-other">
-                        	<div class="popup-window-trigger" data-popup="#popup-portfolio-2">
-                                <img class="onscroll-animate" alt="img1" src="images/portfolio/onepage_2.jpg" data-delay="300" data-animation="fadeInUp">
-                                <div class="portfolio-detail">
-                                    <div class="portfolio-detail-container">
-                                        <div class="portfolio-detail-content">
-                                            <h2>Photo title here</h2>
-                                            Lifestyle, Other
-                                        </div>
-                                    </div>
-                                </div>
-                        	</div>
-                        </article>
-                    	<article class="portfolio-item filter-other filter-portrait">
-                        	<div class="popup-window-trigger" data-popup="#popup-portfolio-3">
-                                <img class="onscroll-animate" alt="img1" src="images/portfolio/onepage_3.jpg" data-animation="fadeInUp">
-                                <div class="portfolio-detail">
-                                    <div class="portfolio-detail-container">
-                                        <div class="portfolio-detail-content">
-                                            <h2>Photo title here</h2>
-                                            Lifestyle, Other
-                                        </div>
-                                    </div>
-                                </div>
-                        	</div>
-                        </article>
-                    	<article class="portfolio-item filter-lifestyle filter-fashion">
-                        	<div class="popup-window-trigger" data-popup="#popup-portfolio-1">
-                                <img class="onscroll-animate" alt="img1" src="images/portfolio/onepage_4.jpg" data-delay="300" data-animation="fadeInUp">
-                                <div class="portfolio-detail">
-                                    <div class="portfolio-detail-container">
-                                        <div class="portfolio-detail-content">
-                                            <h2>Photo title here</h2>
-                                            Lifestyle, Other
-                                        </div>
-                                    </div>
-                                </div>
-                        	</div>
-                        </article>
-                    	<article class="portfolio-item filter-other filter-portrait filter-fashion">
-                        	<div class="popup-window-trigger" data-popup="#popup-portfolio-2">
-                                <img class="onscroll-animate" alt="img1" src="images/portfolio/onepage_5.jpg" data-animation="fadeInUp">
-                                <div class="portfolio-detail">
-                                    <div class="portfolio-detail-container">
-                                        <div class="portfolio-detail-content">
-                                            <h2>Photo title here</h2>
-                                            Lifestyle, Other
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    	<article class="portfolio-item filter-lifestyle filter-fashion">
-                        	<div class="popup-window-trigger" data-popup="#popup-portfolio-3">
-                                <img class="onscroll-animate" alt="img1" src="images/portfolio/onepage_6.jpg" data-delay="300" data-animation="fadeInUp">
-                                <div class="portfolio-detail">
-                                    <div class="portfolio-detail-container">
-                                        <div class="portfolio-detail-content">
-                                            <h2>Photo title here</h2>
-                                            Lifestyle, Other
-                                        </div>
-                                    </div>
-                                </div>
-                        	</div>
-                        </article>
+                    {% endfor %}
                     </div><!-- #portfolio -->
                	</div><!-- .container -->
           	</div><!-- .section-content -->
@@ -553,81 +491,38 @@
           	</div><!-- .section-content -->
       	</section><!-- #section-contact -->
 
-        <section id="popup-portfolio-1" class="popup-window-container">
-            <div class="section-content">
-                <div class="popup-window-closing-area"></div>
-            	<div class="container">
-                    <div class="popup-window">
-                        <div class="popup-window-header">
-                            <div class="popup-window-close"></div>
-                            <h3>Lorem ipsum dolor sit amet consectetuer</h3>
-                        </div>
-                        <div class="single-slider simple-arrows">
-                            <img alt="image" src="images/portfolio/1.jpg">
-                            <img alt="image" src="images/portfolio/2.jpg">
-                            <img alt="image" src="images/portfolio/3.jpg">
-                            <img alt="image" src="images/portfolio/1.jpg">
-                            <img alt="image" src="images/portfolio/2.jpg">
-                            <img alt="image" src="images/portfolio/3.jpg">
-                        </div>
-                        <div class="popup-window-detail">
-                            <div class="left-detail">
-                                By <a href="#">Smarty Studio</a> <span class="delimiter-inline"></span> In <a href="#">Photo</a>, <a href="#">Lifestyle</a>, <a href="#">Other</a> <span class="delimiter-inline"></span> Camera: <a href="#">Canon EOS 5D Mark II</a>
-                            </div>
-                            <div class="right-detail">
-                                Share:
-                                <div class="detail-socials">
-                                    <a href="#"><img alt="facebook" src="images/share/facebook.png"></a>
-                                    <a href="#"><img alt="google plus" src="images/share/google_plus.png"></a>
-                                    <a href="#"><img alt="twitter" src="images/share/twitter.png"></a>
-                                    <a href="#"><img alt="pinterest" src="images/share/pinterest.png"></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="popup-window-content">
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl.</p>
-                        </div>
-                    </div><!-- .popup-window -->
-            	</div><!-- .container -->
-            </div><!-- .section-content -->
-      	</section><!-- #popup-portfolio-1 -->
-
-        <section id="popup-portfolio-2" class="popup-window-container">
+    {% for photo in photos %}
+        <section id="popup-portfolio-{{ photo.pk }}" class="popup-window-container">
             <div class="section-content">
                 <div class="popup-window-closing-area"></div>
             	<div class="container">
                     <div class="popup-window">
                         <div class="popup-window-close popup-window-close-light"></div>
                         <div class="single-slider-v2">
-                            <img alt="image" src="images/portfolio/1.jpg">
-                            <img alt="image" src="images/portfolio/2.jpg">
-                            <img alt="image" src="images/portfolio/3.jpg">
-                            <img alt="image" src="images/portfolio/1.jpg">
-                            <img alt="image" src="images/portfolio/2.jpg">
-                            <img alt="image" src="images/portfolio/3.jpg">
+                            <img alt="{{ photo.heading }}" src="{{ photo.image.url }}">
                         </div>
                         <div class="popup-window-detail">
                             <div class="left-detail">
-                                By <a href="#">Smarty Studio</a> <span class="delimiter-inline"></span> In <a href="#">Photo</a>, <a href="#">Lifestyle</a>, <a href="#">Other</a> <span class="delimiter-inline"></span> Camera: <a href="#">Canon EOS 5D Mark II</a>
+                                By <a href="mailto:dana@lunaspicturebox.com">Dana Cassity</a> <span class="delimiter-inline"></span> In <a href="">{{ photo.category|capfirst }}</a> <span class="delimiter-inline"></span><!-- Camera: <a href="#">Canon EOS 5D Mark II</a> -->
                             </div>
                             <div class="right-detail">
                                 Share:
                                 <div class="detail-socials">
-                                    <a href="#"><img alt="facebook" src="images/share/facebook.png"></a>
-                                    <a href="#"><img alt="google plus" src="images/share/google_plus.png"></a>
-                                    <a href="#"><img alt="twitter" src="images/share/twitter.png"></a>
-                                    <a href="#"><img alt="pinterest" src="images/share/pinterest.png"></a>
+                                    <a href="#"><img alt="Facebook" src="{% static 'images/share/facebook.png' %}"></a>
+                                    <a href="#"><img alt="Google Plus" src="{% static 'images/share/google_plus.png' %}"></a>
+                                    <a href="#"><img alt="Twitter" src="{% static 'images/share/twitter.png' %}"></a>
+                                    <a href="#"><img alt="Pinterest" src="{% static 'images/share/pinterest.png' %}"></a>
                                 </div>
                             </div>
                         </div>
                         <div class="popup-window-content">
-                            <h3 class="first-heading">Lorem ipsum dolor sit amet consectetuer</h3>
+                            <h3 class="first-heading">{{ photo.title }}</h3>
                             <div class="row text-smaller">
                             	<div class="col-md-6">
-                            		<p class="no-top-margin">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
+                            		<p class="no-top-margin">{{ photo.heading }}</p>
                         		</div>
                             	<div class="col-md-6">
-                            		<p class="no-top-margin">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl.</p>
+                            		<p class="no-top-margin">{{ photo.subheading }}</p>
                         		</div>
                             </div>
                         </div>
@@ -635,39 +530,7 @@
             	</div><!-- .container -->
             </div><!-- .section-content -->
       	</section><!-- #popup-portfolio-2 -->
-
-        <section id="popup-portfolio-3" class="popup-window-container">
-            <div class="section-content">
-                <div class="popup-window-closing-area"></div>
-            	<div class="container">
-                    <div class="popup-window">
-                        <div class="popup-window-close popup-window-close-out"></div>
-                        <div class="single-slider-v2 big-arrows">
-                            <img alt="image" src="images/portfolio/1.jpg">
-                            <img alt="image" src="images/portfolio/2.jpg">
-                            <img alt="image" src="images/portfolio/3.jpg">
-                            <img alt="image" src="images/portfolio/1.jpg">
-                            <img alt="image" src="images/portfolio/2.jpg">
-                            <img alt="image" src="images/portfolio/3.jpg">
-                        </div>
-                        <div class="popup-window-detail text-dark">
-                            <div class="left-detail">
-                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit
-                            </div>
-                            <div class="right-detail">
-                                Share:
-                                <div class="detail-socials">
-                                    <a href="#"><img alt="facebook" src="images/share/facebook.png"></a>
-                                    <a href="#"><img alt="google plus" src="images/share/google_plus.png"></a>
-                                    <a href="#"><img alt="twitter" src="images/share/twitter.png"></a>
-                                    <a href="#"><img alt="pinterest" src="images/share/pinterest.png"></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- .popup-window -->
-            	</div><!-- .container -->
-            </div><!-- .section-content -->
-      	</section><!-- #popup-portfolio-3 -->
+    {% endfor %}
 
         <section id="popup-blog-1" class="popup-window-container">
             <div class="section-content">
