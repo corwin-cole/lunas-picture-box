@@ -12,8 +12,8 @@ BACKGROUND_IMAGE_HELP_TEXT = '{section} background image{extra}'
 
 class MainSiteContent(models.Model):
     """
-    Defines fields for managing static site content, e.g. header wording, 'about me' skills, etc. Intended to be used
-    as a single-row table, but can be used as a multi-row table for site versioning.
+    Defines fields for managing static site content, e.g. header wording, 'about me' skills, etc. Uses signals to
+    enforce only one row with `is_live=True` in the table.
     """
 
     id = models.UUIDField(
