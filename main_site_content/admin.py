@@ -43,6 +43,8 @@ class MainSiteContentAdmin(admin.ModelAdmin):
                 'name',
                 'business_name',
                 'logo',
+                'favicon',
+                'apple_touch_icon',
             )
         }),
         ('Social Profiles', {
