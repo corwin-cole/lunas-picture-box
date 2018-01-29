@@ -33,6 +33,11 @@ class MainSiteContentAdmin(admin.ModelAdmin):
     ]
 
     fieldsets = (
+        (None, {
+            'fields': (
+                'is_live'
+            )
+        }),
         ('Site-Wide Content', {
             'fields': (
                 'name',
