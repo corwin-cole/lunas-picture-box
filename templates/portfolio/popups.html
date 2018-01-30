@@ -1,0 +1,40 @@
+{% for photo in photos %}
+    <section id="popup-portfolio-{{ photo.pk }}" class="popup-window-container">
+        <div class="section-content">
+            <div class="popup-window-closing-area"></div>
+            <div class="container">
+                <div class="popup-window">
+                    <div class="popup-window-close popup-window-close-light"></div>
+                    <div class="single-slider-v2">
+                        <img alt="{{ photo.heading }}" src="{{ photo.image.url }}">
+                    </div>
+                    <div class="popup-window-detail">
+                        <div class="left-detail">
+                            By <a href="mailto:dana@lunaspicturebox.com">Dana Cassity</a> <span class="delimiter-inline"></span> In <a href="">{{ photo.category|capfirst }}</a> <span class="delimiter-inline"></span><!-- Camera: <a href="#">Canon EOS 5D Mark II</a> -->
+                        </div>
+                        <div class="right-detail">
+                            Share:
+                            <div class="detail-socials">
+                                <a href="#"><img alt="Facebook" src="{% static 'images/share/facebook.png' %}"></a>
+                                <a href="#"><img alt="Google Plus" src="{% static 'images/share/google_plus.png' %}"></a>
+                                <a href="#"><img alt="Twitter" src="{% static 'images/share/twitter.png' %}"></a>
+                                <a href="#"><img alt="Pinterest" src="{% static 'images/share/pinterest.png' %}"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popup-window-content">
+                        <h3 class="first-heading">{{ photo.title }}</h3>
+                        <div class="row text-smaller">
+                            <div class="col-md-6">
+                                <p class="no-top-margin">{{ photo.heading }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="no-top-margin">{{ photo.subheading }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- .popup-window -->
+            </div><!-- .container -->
+        </div><!-- .section-content -->
+    </section><!-- #popup-portfolio-2 -->
+{% endfor %}

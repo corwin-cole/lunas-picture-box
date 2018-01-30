@@ -1,0 +1,75 @@
+<section id="section-services" style="background-image: url({{ object.services_background_image.url }})">
+    <div class="section-content dark-screen">
+        <div class="container">
+            <div class="tab-content">
+                <!-- Tab panes -->
+                <div role="tabpanel" class="tab-pane fade in active" id="tab-our-services">
+                    <h1 class="text-center onscroll-animate" data-animation="fadeInUp">{{ object.services_left_subsection_header }}</h1>
+                    <div class="onscroll-animate">
+                        <div id="slider-services" class="slider-default big-arrows">
+                        {% for service in services %}
+                            <div class="slider-item">
+                                {{ service.icon.as_html }}
+                                <h3>{{ service.name }}</h3>
+                                <p>{{ service.description }}</p>
+                            </div>
+                        {% endfor %}
+                        </div><!-- #slider-services -->
+                    </div><!-- .onscroll-animate -->
+                </div><!-- #tab-our-services -->
+
+                <div role="tabpanel" class="tab-pane fade" id="tab-what-we-do">
+                    <h1 class="text-center onscroll-animate" data-animation="fadeInUp">{{ object.services_middle_subsection_header }}</h1>
+                    <div class="row">
+                    {% for skill in skills %}
+                    {% if forloop.counter0|divisibleby:2 %}
+                        <div class="col-xl-6">
+                            <div class="row">
+                    {% endif %}
+                                <div class="col-md-6 onscroll-animate">
+                                    <div class="slider-item">
+                                        <div class="graph-donut onscroll-animate" data-percentage="{{ skill.progress }}" data-delay="400">
+                                            <div class="graph-value">{{ skill.progress }}%</div>
+                                            <div class="graph-left">
+                                                <div class="graph-inner"></div>
+                                            </div>
+                                            <div class="graph-right">
+                                                <div class="graph-inner"></div>
+                                            </div>
+                                        </div>
+                                        <h3>{{ skill.name }}</h3>
+                                        <p>{{ skill.description }}</p>
+                                    </div>
+                                </div>
+                    {% if forloop.counter1|divisibleby:2 %}
+                            </div><!-- .row -->
+                        </div><!-- .col-xl-6 -->
+                    {% endif %}
+                    {% endfor %}
+                    </div><!-- .row -->
+                </div><!-- #tab-what-we-do -->
+
+                <div role="tabpanel" class="tab-pane fade" id="tab-our-partners">
+                    <h1 class="text-center onscroll-animate" data-animation="fadeInUp">{{ object.services_right_subsection_header }}</h1>
+                    <div id="slider-partners" class="big-arrows slider-default text-center">
+                    {% for partner in partners %}
+                        <div class="slider-item">
+                            <a href="{{ partner.link.url }}" target="_blank" rel="noopener noreferrer">
+                                <img alt="{{ partner.name }}" src="{{ partner.image.url }}">
+                            </a>
+                        </div>
+                    {% endfor %}
+                    </div><!-- #slider-partners -->
+                </div>
+            </div><!-- .tab-content -->
+
+            <div class="margin-50"></div>
+
+            <ul class="tablist" role="tablist">
+                <li class="active onscroll-animate"><a href="#tab-our-services" class="button-void button-offsets" role="tab" data-toggle="tab">{{ object.services_left_subsection_header }}</a></li>
+                <li class="onscroll-animate" data-delay="300"><a href="#tab-what-we-do" class="button-void button-offsets" role="tab" data-toggle="tab">{{ object.services_middle_subsection_header }}</a></li>
+                <li class="onscroll-animate" data-delay="400"><a href="#tab-our-partners" class="button-void button-offsets" role="tab" data-toggle="tab">{{ object.services_right_subsection_header }}</a></li>
+            </ul>
+        </div><!-- .container -->
+    </div><!-- .section-content -->
+</section><!-- #section-services -->

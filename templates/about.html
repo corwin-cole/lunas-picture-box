@@ -1,0 +1,39 @@
+<section id="section-about" style="background-image: url({{ object.about_background_image.url }})">
+    <div class="section-content dark-screen">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 content-column">
+                    <article class="onscroll-animate">
+                        <h1 class="onscroll-animate" data-animation="fadeInRight">About</h1>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <p class="text-bigger">{{ object.about_paragraph }}</p>
+                            </div>
+                        </div>
+                        <div class="testimonial">{{ object.about_quote }}</div>
+                        <div class="onscroll-animate" data-animation="fadeInUp" data-delay="400"><a href="{{ object.about_button_link }}" class="button-long">{{ object.about_button_text }}</a></div>
+                    </article>
+                </div><!-- .col-md-7 -->
+                <div class="col-md-5 content-column">
+                    <article class="onscroll-animate" data-delay="400">
+                    {% if object.about_skills_header %}
+                        <h1 class="onscroll-animate" data-animation="fadeInRight">{{ object.about_skills_header }}</h1>
+                    {% endif %}
+                    {% for skill in skills %}
+                        <div class="graph-bar onscroll-animate" data-percentage="{{ skill.progress }}">
+                            <div class="graph-bar-label">{{ skill.name }}</div>
+                            <div class="graph-value">{{ skill.progress }}%</div>
+                            <div class="graph-line">
+                                <div class="graph-line-value"></div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    {% if object.about_skills_footnote %}
+                        <p class="note">* {{ object.about_skills_footnote }}</p>
+                    {% endif %}
+                    </article>
+                </div><!-- .col-md-5 -->
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </div><!-- .section-content -->
+</section><!-- #section-about -->

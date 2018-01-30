@@ -1,0 +1,20 @@
+<div id="page-loader">
+{% for i in '123456789' %}
+    <div class="loader-square loader-square-{{ i }}">
+        <div class="loader-square-content">
+            <div class="loader-square-inner dark-screen"></div>
+        </div>
+    </div>
+{% endfor %}
+    <div class="loader-container">
+        <div class="loader-content">
+            <img class="loader-logo" alt="Phoenix-area professional photography" src="{{ object.logo.url }}">
+        </div>
+    </div>
+    <div class="loader-footer">
+        <p>
+            Copyright &copy; {% now 'Y' %} <span class="text-white">{{ object.business_name }}</span>.<br>All
+            Rights Reserved.
+        </p>
+    </div>
+</div>
