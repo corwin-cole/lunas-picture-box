@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'fontawesome',
     'django_countries',
     'phonenumber_field',
+    'ckeditor',
     'main_site_content.apps.MainSiteContentConfig',
     'photos.apps.PhotosConfig',
 ]
