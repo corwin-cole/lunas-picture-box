@@ -51,21 +51,26 @@
 <body>
     {% include 'loader.html' %}
 	<div id="all">
+        {# Navigation menu #}
         {% include 'menu.html' %}
         <div id="menu-trigger">
         	<i class="fa fa-reorder"></i>
         </div>
+
+        {# Navigable sections #}
         {% include 'home.html' %}
         {% include 'about.html' %}
         {% include 'services.html' %}
         {% include 'portfolio.html' %}
         {% include 'blog.html' %}
         {% include 'contact.html' %}
-        {# Initially invisible popup divs, revealed by user action #}
+
+        {# Popup divs (initially invisible, revealed by user action) #}
         {% include 'portfolio/popups.html' %}
         {% include 'blog/popups.html' %}
         {% include 'contact/popups.html' %}
 
+        {# Arrow navigation #}
       	<a href="#" id="to-top">
         	<span id="top-arrow-1">
         		<i class="fa fa-angle-up"></i>
@@ -75,7 +80,6 @@
             	<i class="fa fa-angle-up"></i>
       		</span>
         </a>
-
       	<div id="page-screen-cover"></div>
     </div><!-- #all -->
 
