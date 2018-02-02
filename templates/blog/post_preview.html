@@ -1,0 +1,62 @@
+{# Image #}
+{% if post.image %}
+<div class="post-detail">
+    <div class="post-detail-inner">
+        <div class="post-detail-content">
+            <a href="#" class="popup-window-trigger" data-popup="#popup-blog-{{ forloop.counter1 }}"><i class="fa fa-file"></i></a>
+            <a href="{{ post.image.url }}" data-lightbox="blog-post{{ forloop.counter1 }}"><i class="fa fa-search"></i></a>
+        </div>
+    </div>
+</div>
+<img alt="{{ post.title }}" src="{{ post.image.url }}">
+{# Video #}
+{% elif post.video_url %}
+<div class="embed-responsive embed-responsive-4by3">
+    <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/rEk0AdJx9gw"></iframe>
+</div>
+{# Audio #}
+{% elif post.audio_file %}
+<div class="post-info">
+    <audio controls class="post-audio">
+        <source src="{{ post.audio_file.url }}" type="audio/mpeg">
+    </audio>
+</div>
+<img alt="{{ post.title }}" src="{{ post.background_image }}">
+{# Quote #}
+{% elif post.quote %}
+<div class="post-info">
+    <div class="post-info-inner">
+        <div class="post-info-content">
+            <p>
+                “{{ post.quote }}”
+            </p>
+            <p class="post-info-normal">
+                - {{ post.by }}
+            </p>
+        </div>
+    </div>
+</div>
+<img alt="{{ post.title }}" src="{{ post.background_image.url }}">
+{# Gallery #}
+{% elif post.galleryimage_set %}
+<div class="post-preview-slider">
+{% for image in post.galleryimage_set.all %}
+    <a href="{{ image.url }}" data-lightbox="blog-post{{ forloop.counter1 }}"><img alt="{{ post.title }}" src="{{ image.url }}"></a>
+{% endfor %}
+</div>
+{# Link #}
+{% elif post.link %}
+<div class="post-info">
+    <div class="post-info-inner">
+        <div class="post-info-content">
+            <p>
+                <a href="{{ post.link }}">{{ post.link_text }}</a>
+            </p>
+            <p class="post-info-normal">
+                - {{ post.attribution }}
+            </p>
+        </div>
+    </div>
+</div>
+<img alt="{{ post.title }}" src="{{ post.background_image }}">
+{% endif %}
