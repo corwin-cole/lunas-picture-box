@@ -291,6 +291,10 @@ class MainSiteContent(models.Model):
             business_name=self.business_name
         )
 
+    class Meta:
+        verbose_name = 'Main Site Content'
+        verbose_name_plural = 'Main Site Content Configurations'
+
 
 class MainSiteContentChildAbstractBase(models.Model):
     """
