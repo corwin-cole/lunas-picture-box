@@ -9,6 +9,8 @@ class BlogPost(models.Model):
     """
     Parent class for proxies describing various types of blog posts
     """
+
+    # Base fields
     id = models.UUIDField(
         primary_key=True,
         default=uuid.uuid4,
@@ -31,15 +33,23 @@ class BlogPost(models.Model):
         on_delete=models.CASCADE
     )
     body = RichTextField()
+
+    # Image field
     image = models.ForeignKey(
         to=Photo,
         on_delete=models.CASCADE
     )
+
+    # Video field
     video_url = models.FileField(
         verbose_name='Video URL',
         help_text='Add the URL of a video on your YouTube account'
     )
+
+    # Audio field
     audio_file = models.FileField()
+
+    # Quote fields
     quote = models.CharField(
         max_length=1000,
         help_text='1000 characters max'
@@ -53,6 +63,8 @@ class BlogPost(models.Model):
         on_delete=models.CASCADE,
         related_name='background_image'
     )
+
+    # Link field; background_image is used for Links also
     link = models.URLField()
 
     class Meta:
