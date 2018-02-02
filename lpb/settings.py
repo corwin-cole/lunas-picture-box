@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'main_site_content.apps.MainSiteContentConfig',
     'photos.apps.PhotosConfig',
+    'blog.apps.BlogConfig',
 ]
 
 AWS_S3_REGION_NAME = 'us-west-1'
