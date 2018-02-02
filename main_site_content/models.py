@@ -285,6 +285,12 @@ class MainSiteContent(models.Model):
         blank=True
     )
 
+    def __str__(self):
+        return '{name} ({business_name})'.format(
+            name=self.name,
+            business_name=self.business_name
+        )
+
 
 class MainSiteContentChildAbstractBase(models.Model):
     """
