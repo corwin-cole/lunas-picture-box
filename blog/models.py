@@ -76,16 +76,31 @@ class BlogPost(models.Model):
         help_text='Similar to a byline, follows the clickable text'
     )
 
+    def __str__(self):
+        return '{}'.format(self.title)
+
     class Meta:
         ordering = ('-date_published',)
 
 
 class Image(BlogPost):
+    def __str__(self):
+        return '{title} (image: {image__title})'.format(
+            title=self.title,
+            image__title=self.image.title
+        )
+
     class Meta:
         proxy = True
 
 
 class Video(BlogPost):
+    def __str__(self):
+        return '{title} ({video_url})'.format(
+            title=self.title,
+            video_url=self.video_url
+        )
+
     class Meta:
         proxy = True
 
@@ -120,10 +135,23 @@ class Audio(BlogPost):
 
 
 class Quote(BlogPost):
+    def __str__(self):
+        return '{title} ({quote} by: {by})'.format(
+            title=self.title,
+            quote=self.quote,
+            by=self.by
+        )
+
     class Meta:
         proxy = True
 
 
 class Link(BlogPost):
+    def __str__(self):
+        return '{title} (link text: {link_text})'.format(
+            title=self.title,
+            link_text=self.link_text
+        )
+
     class Meta:
         proxy = True
