@@ -42,9 +42,10 @@ class BlogPost(models.Model):
     )
 
     # Video field
-    video_url = models.FileField(
+    video_url = models.URLField(
         verbose_name='Video URL',
-        help_text='Add the URL of a video on your YouTube account'
+        help_text='Add the URL of a video on your YouTube account',
+        null=True
     )
 
     # Audio field
