@@ -18,9 +18,9 @@ class GalleryImageInline(admin.StackedInline):
 
 
 class GalleryAdmin(admin.ModelAdmin):
-    class Meta:
-        model = Gallery
-
+    """
+    Allows a gallery plus its child gallery images to be managed concurrently
+    """
     list_display = [
         'title',
         'date_published',
@@ -33,47 +33,70 @@ class GalleryAdmin(admin.ModelAdmin):
         GalleryImageInline,
     ]
 
+    class Meta:
+        model = Gallery
+
 
 class ImageAdmin(admin.ModelAdmin):
+    """
+    Image post admin; base blog post fields with a single image
+    """
+    fields = BLOG_POST_BASE_FIELDS + ['image']
+
     class Meta:
         model = Image
 
-    fields = BLOG_POST_BASE_FIELDS + ['image']
-
 
 class VideoAdmin(admin.ModelAdmin):
+    """
+    Video post admin; base blog post fields with a single video URL
+    """
+    fields = BLOG_POST_BASE_FIELDS + ['video_url']
+
     class Meta:
         model = Video
 
-    fields = BLOG_POST_BASE_FIELDS + ['video_url']
-
 
 class AudioAdmin(admin.ModelAdmin):
-    class Meta:
-        model = Audio
-
-    fields = BLOG_POST_BASE_FIELDS + ['audio_file']
-
-
-class LinkAdmin(admin.ModelAdmin):
-    class Meta:
-        model = Link
-
+    """
+    Audio post admin; base blog post fields with a single audio file and background image
+    """
     fields = BLOG_POST_BASE_FIELDS + [
-        'link',
+        'audio_file',
         'background_image'
     ]
 
+    class Meta:
+        model = Audio
+
+
+class LinkAdmin(admin.ModelAdmin):
+    """
+    Link post admin; base blog post fields with a link, clickable text, attribution, and background image
+    """
+    fields = BLOG_POST_BASE_FIELDS + [
+        'link',
+        'link_text',
+        'attribution',
+        'background_image'
+    ]
+
+    class Meta:
+        model = Link
+
 
 class QuoteAdmin(admin.ModelAdmin):
-    class Meta:
-        model = Quote
-
+    """
+    Quote post admin; base blog post fields with a quote, attribution, and background image
+    """
     fields = BLOG_POST_BASE_FIELDS + [
         'quote',
         'by',
         'background_image'
     ]
+
+    class Meta:
+        model = Quote
 
 
 admin.site.register(Image, ImageAdmin)
