@@ -1,18 +1,20 @@
+{# Outer loop counter is required within inner loop #}
+{% with forloop.counter as outer_loop_counter %}
 {# Image #}
 {% if post.image %}
 <div class="post-detail">
     <div class="post-detail-inner">
         <div class="post-detail-content">
             <a href="#" class="popup-window-trigger" data-popup="#popup-blog-{{ forloop.counter }}"><i class="fa fa-file"></i></a>
-            <a href="{{ post.image.url }}" data-lightbox="blog-post{{ forloop.counter }}"><i class="fa fa-search"></i></a>
+            <a href="{{ post.image.image.url }}" data-lightbox="blog-post{{ forloop.counter }}"><i class="fa fa-search"></i></a>
         </div>
     </div>
 </div>
-<img alt="{{ post.title }}" src="{{ post.image.url }}">
+<img alt="{{ post.title }}" src="{{ post.image.image.url }}">
 {# Video #}
 {% elif post.video_url %}
 <div class="embed-responsive embed-responsive-4by3">
-    <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/rEk0AdJx9gw"></iframe>
+    <iframe class="embed-responsive-item" src="{{ post.video_url }}"></iframe>
 </div>
 {# Audio #}
 {% elif post.audio_file %}
@@ -21,7 +23,7 @@
         <source src="{{ post.audio_file.url }}" type="audio/mpeg">
     </audio>
 </div>
-<img alt="{{ post.title }}" src="{{ post.background_image }}">
+<img alt="{{ post.title }}" src="{{ post.background_image.image.url }}">
 {# Quote #}
 {% elif post.quote %}
 <div class="post-info">
@@ -36,14 +38,19 @@
         </div>
     </div>
 </div>
-<img alt="{{ post.title }}" src="{{ post.background_image.url }}">
+<img alt="{{ post.title }}" src="{{ post.background_image.image.url }}">
 {# Gallery #}
-{% elif post.galleryimage_set %}
+{% with post.galleryimage_set.all as galleryimages %}
+{% if galleryimages|length > 0 %}
 <div class="post-preview-slider">
-{% for image in post.galleryimage_set.all %}
-    <a href="{{ image.url }}" data-lightbox="blog-post{{ forloop.counter }}"><img alt="{{ post.title }}" src="{{ image.url }}"></a>
+{% for galleryimage in post.galleryimage_set.all %}
+    <a href="{{ galleryimage.image.image.url }}" data-lightbox="blog-post{{ outer_loop_counter }}">
+        <img alt="{{ post.title }}" src="{{ galleryimage.image.image.url }}">
+    </a>
 {% endfor %}
 </div>
+{% endif %}
+{% endwith %}
 {# Link #}
 {% elif post.link %}
 <div class="post-info">
@@ -58,5 +65,6 @@
         </div>
     </div>
 </div>
-<img alt="{{ post.title }}" src="{{ post.background_image }}">
+<img alt="{{ post.title }}" src="{{ post.background_image.image.url }}">
 {% endif %}
+{% endwith %}

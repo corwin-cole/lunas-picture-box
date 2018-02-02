@@ -1,0 +1,61 @@
+{% load staticfiles %}
+
+{# Image #}
+{% if post.image %}
+<div class="popup-window-header popup-bg-img">
+    <div class="popup-window-close"></div>
+</div>
+{# Video #}
+{% elif post.video_url %}
+<div class="popup-window-close popup-window-close-light"></div>
+<div class="embed-responsive embed-responsive-4by3">
+    <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/rEk0AdJx9gw"></iframe>
+</div>
+{# Audio #}
+{% elif post.audio_file %}
+<div class="popup-window-close popup-window-close-light"></div>
+<div class="popup-window-single">
+    <img alt="{{ post.background_image.title }}" src="{{ post.background_image.image.url }}">
+    <div class="popup-window-single-container">
+        <audio controls class="post-audio">
+            <source src="{{ post.audio_file }}" type="audio/mpeg">
+        </audio>
+    </div>
+</div>
+{# Quote #}
+{% elif post.quote %}
+<div class="popup-window-close popup-window-close-light"></div>
+<div class="popup-window-single">
+    <img alt="{{ post.background_image.title }}" src="{{ post.background_image.image.url }}">
+    <div class="popup-window-single-container">
+        <div class="popup-window-single-content">
+            <div class="popup-window-single-inner">
+                <p>“{{ post.quote }}”</p>
+                <p class="popup-window-single-detail">- {{ post.by }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{# Gallery #}
+{% elif post.galleryimage_set %}
+<div class="popup-window-close popup-window-close-light"></div>
+<div class="single-slider simple-arrows">
+{% for galleryimage in post.galleryimage_set.all %}
+    <img alt="{{ galleryimage.image.title }}" src="{{ galleryimage.image.url }}">
+{% endfor %}
+</div>
+{# Link #}
+{% elif post.link %}
+<div class="popup-window-close popup-window-close-light"></div>
+<div class="popup-window-single">
+    <img alt="{{ post.background_image.title }}" src="{{ post.background_image.image.url }}">
+    <div class="popup-window-single-container">
+        <div class="popup-window-single-content">
+            <div class="popup-window-single-inner">
+                <p><a href="{{ post.link }}">{{ post.link_text }}</a></p>
+                <p class="popup-window-single-detail">- {{ post.attribution }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}

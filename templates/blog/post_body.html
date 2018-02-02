@@ -1,0 +1,6 @@
+{% if post.image %}
+<img alt="image" src="{{ post.image.url }}">
+{% endif %}
+<div class="popup-window-content">
+    {{ post.body|safe }}
+</div>
