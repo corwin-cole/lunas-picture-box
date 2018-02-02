@@ -105,6 +105,11 @@ class GalleryImage(models.Model):
         to=Gallery,
         on_delete=models.CASCADE
     )
+    image = models.ForeignKey(
+        to=Photo,
+        on_delete=models.CASCADE,
+        null=True
+    )
 
 
 class Audio(BlogPost):
