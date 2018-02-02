@@ -172,4 +172,7 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
+# To ensure compatibility between CKEditor and storages
+AWS_QUERYSTRING_AUTH = False
+
 SITE_ID = 1
