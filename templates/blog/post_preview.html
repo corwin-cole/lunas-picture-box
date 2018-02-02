@@ -3,8 +3,8 @@
 <div class="post-detail">
     <div class="post-detail-inner">
         <div class="post-detail-content">
-            <a href="#" class="popup-window-trigger" data-popup="#popup-blog-{{ forloop.counter1 }}"><i class="fa fa-file"></i></a>
-            <a href="{{ post.image.url }}" data-lightbox="blog-post{{ forloop.counter1 }}"><i class="fa fa-search"></i></a>
+            <a href="#" class="popup-window-trigger" data-popup="#popup-blog-{{ forloop.counter }}"><i class="fa fa-file"></i></a>
+            <a href="{{ post.image.url }}" data-lightbox="blog-post{{ forloop.counter }}"><i class="fa fa-search"></i></a>
         </div>
     </div>
 </div>
@@ -41,7 +41,7 @@
 {% elif post.galleryimage_set %}
 <div class="post-preview-slider">
 {% for image in post.galleryimage_set.all %}
-    <a href="{{ image.url }}" data-lightbox="blog-post{{ forloop.counter1 }}"><img alt="{{ post.title }}" src="{{ image.url }}"></a>
+    <a href="{{ image.url }}" data-lightbox="blog-post{{ forloop.counter }}"><img alt="{{ post.title }}" src="{{ image.url }}"></a>
 {% endfor %}
 </div>
 {# Link #}
