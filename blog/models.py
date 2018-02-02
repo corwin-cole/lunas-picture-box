@@ -31,27 +31,39 @@ class BlogPost(models.Model):
         on_delete=models.CASCADE
     )
     body = RichTextField()
+    image = models.ForeignKey(
+        to=Photo,
+        on_delete=models.CASCADE
+    )
+    video_url = models.FileField(
+        verbose_name='Video URL',
+        help_text='Add the URL of a video on your YouTube account'
+    )
+    audio_file = models.FileField()
+    quote = models.CharField(
+        max_length=1000,
+        help_text='1000 characters max'
+    )
+    by = models.CharField(
+        max_length=100,
+        help_text='100 characters max'
+    )
+    background_image = models.ForeignKey(
+        to=Photo,
+        on_delete=models.CASCADE
+    )
+    link = models.URLField()
 
     class Meta:
         ordering = ('-date_published',)
 
 
 class Image(BlogPost):
-    image = models.ForeignKey(
-        to=Photo,
-        on_delete=models.CASCADE
-    )
-
     class Meta:
         proxy = True
 
 
 class Video(BlogPost):
-    video_url = models.FileField(
-        verbose_name='Video URL',
-        help_text='Add the URL of a video on your YouTube account'
-    )
-
     class Meta:
         proxy = True
 
@@ -75,33 +87,16 @@ class GalleryImage(models.Model):
 
 
 class Audio(BlogPost):
-    audio_file = models.FileField()
-
     class Meta:
         verbose_name_plural = 'Audio'
         proxy = True
 
 
 class Quote(BlogPost):
-    quote = models.CharField(
-        max_length=1000,
-        help_text='1000 characters max'
-    )
-    by = models.CharField(
-        max_length=100,
-        help_text='100 characters max'
-    )
-    background_image = models.ForeignKey(
-        to=Photo,
-        on_delete=models.CASCADE
-    )
-
     class Meta:
         proxy = True
 
 
 class Link(BlogPost):
-    link = models.URLField()
-
     class Meta:
         proxy = True
