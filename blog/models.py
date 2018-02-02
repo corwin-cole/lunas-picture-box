@@ -37,7 +37,8 @@ class BlogPost(models.Model):
     # Image field
     image = models.ForeignKey(
         to=Photo,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        null=True
     )
 
     # Video field
@@ -77,7 +78,7 @@ class BlogPost(models.Model):
     )
 
     def __str__(self):
-        return '{}'.format(self.title)
+        return self.title
 
     class Meta:
         ordering = ('-date_published',)
