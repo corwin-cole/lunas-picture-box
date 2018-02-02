@@ -50,7 +50,8 @@ class BlogPost(models.Model):
     )
     background_image = models.ForeignKey(
         to=Photo,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='background_image'
     )
     link = models.URLField()
 
