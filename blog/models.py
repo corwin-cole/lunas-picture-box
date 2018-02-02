@@ -64,8 +64,16 @@ class BlogPost(models.Model):
         related_name='background_image'
     )
 
-    # Link field; background_image is used for Links also
-    link = models.URLField()
+    # Link fields; background_image is used for Links also
+    link = models.URLField(help_text='Enter the link URL')
+    link_text = models.CharField(
+        max_length=200,
+        help_text='Clickable text'
+    )
+    attribution = models.CharField(
+        max_length=50,
+        help_text='Similar to a byline, follows the clickable text'
+    )
 
     class Meta:
         ordering = ('-date_published',)
