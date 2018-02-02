@@ -61,7 +61,8 @@ class BlogPost(models.Model):
     background_image = models.ForeignKey(
         to=Photo,
         on_delete=models.CASCADE,
-        related_name='background_image'
+        related_name='background_image',
+        null=True
     )
 
     # Link fields; background_image is used for Links also
