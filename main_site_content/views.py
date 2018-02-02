@@ -3,9 +3,13 @@ from operator import itemgetter
 from django.views.generic import DetailView
 from .models import MainSiteContent
 from photos.models import Photo
+from blog.models import BlogPost
 
 
 class MainSiteView(DetailView):
+    """
+    Single view class, convenient for an entire one-page site.
+    """
     model = MainSiteContent
     template_name = 'base.html'
 
@@ -32,5 +36,9 @@ class MainSiteView(DetailView):
                 categories[photo.category] = 1
         # Create a dictionary ordered by the number of photos per category
         ctx['categories'] = OrderedDict(categories.items(), key=itemgetter(1), reverse=True)
+
+        # Include up to 10 blog posts
+        blog_posts = BlogPost.objects.all()[:10]
+        ctx['blog_posts'] = blog_posts
 
         return ctx
