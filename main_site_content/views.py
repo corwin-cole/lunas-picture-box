@@ -38,7 +38,7 @@ class MainSiteView(DetailView):
         ctx['categories'] = OrderedDict(categories.items(), key=itemgetter(1), reverse=True)
 
         # Include up to 10 blog posts
-        blog_posts = BlogPost.objects.all()[:10]
+        blog_posts = BlogPost.objects.all().prefetch_related('galleryimage_set')[:10]
         ctx['blog_posts'] = blog_posts
 
         return ctx
