@@ -101,6 +101,7 @@ class Photo(models.Model):
     )
     tags = TaggableManager(
         through=UUIDTaggedItem,
+        help_text='Separate by commas. "Use quotes" for multi-word tags',
         blank=True
     )
 
